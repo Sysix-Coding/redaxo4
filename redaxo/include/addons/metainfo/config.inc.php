@@ -65,10 +65,32 @@ if ($REX['REDAXO']) {
 
     rex_register_extension('PAGE_CHECKED', 'a62_extensions_handler');
 
-    $REX['ADDON']['pages'][$mypage] = array(
-        array('', $I18N->msg('article')),
-        array('categories', $I18N->msg('categories')),
-        array('media', $I18N->msg('media')),
-    );
+    $article = new rex_be_page($I18N->msg('article'), array(
+        'page' => $mypage,
+        'subpage' => ''
+    ));
+    $article->setHref('index.php?page='.$page.'&subpage=');
+
+    $category = new rex_be_page($I18N->msg('categories'), array(
+        'page' => $mypage,
+        'subpage' => 'categories'
+    ));
+    $category->setHref('index.php?page='.$page.'&subpage=categories');
+
+    $media = new rex_be_page($I18N->msg('media'), array(
+        'page' => $mypage,
+        'subpage' => 'media'
+    ));
+    $media->setHref('index.php?page='.$page.'&subpage=media');
+
+    $mainMeta = new rex_be_page('Meta Infos', array(
+        'page' => $mypage
+    ));
+
+    $mainMeta->addSubPage($article);
+    $mainMeta->addSubPage($category);
+    $mainMeta->addSubPage($media);
+
+    $REX['ADDON']['pages'][$mypage] = new rex_be_main_page('metainfo', $mainMeta);
 
 }
