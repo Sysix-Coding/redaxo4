@@ -211,8 +211,8 @@ if ($subpage == 'detail') {
                 $imgn = 'media/mime-error.gif';
             } elseif ($thumbs) {
                 if ($image_manager) {
-                    $imgn = $REX['HTDOCS_PATH'] . 'redaxo/index.php?rex_img_type=rex_mediapool_detail&amp;rex_img_file=' . $encoded_fname;
-                    $img_max = $REX['HTDOCS_PATH'] . 'redaxo/index.php?rex_img_type=rex_mediapool_maximized&amp;rex_img_file=' . $encoded_fname;
+                    $imgn = dirname($REX['INCLUDE_PATH']) . '/index.php?rex_img_type=rex_mediapool_detail&amp;rex_img_file=' . $encoded_fname;
+                    $img_max = dirname($REX['INCLUDE_PATH']) . '/index.php?rex_img_type=rex_mediapool_maximized&amp;rex_img_file=' . $encoded_fname;
                 }
             }
 
